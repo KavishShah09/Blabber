@@ -1,227 +1,19 @@
 import React, { useState } from 'react'
 import Nav from './Nav'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { addBlog, deleteBlog } from '../actions'
 import CKEditor from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 function Category({ match }) {
-	let id = 22
-	const [posts] = useState([
-		{
-			category: 'Anime',
-			id: 1,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Anime',
-			id: 2,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Anime',
-			id: 3,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Basketball',
-			id: 4,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Basketball',
-			id: 5,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Cricket',
-			id: 6,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Failure',
-			id: 7,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Failure',
-			id: 8,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Games',
-			id: 9,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Habits',
-			id: 10,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Habits',
-			id: 11,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Internet',
-			id: 12,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Internet',
-			id: 13,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Internet',
-			id: 14,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Karaoke',
-			id: 15,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Nintendo',
-			id: 16,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Unity',
-			id: 17,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Unity',
-			id: 18,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Vue',
-			id: 19,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Vue',
-			id: 20,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-		{
-			category: 'Yemen',
-			id: 21,
-			title: 'Lorem Ipsum',
-			description:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore temporibus iure accusantium? Deserunt vitae commodi illum veniam, nisi similique accusamus. Minima vero quod sed voluptatibus beatae iste eaque facilis nisi?',
-			body:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quos commodi magni voluptatibus unde optio nulla eum perferendis libero est dolor nam, repellat dolorem veritatis assumenda maiores dolorum? Vitae laboriosam magnam fugit, necessitatibus harum voluptas asperiores magni aut sed vel. Quas tempora provident ab laudantium enim consequuntur optio inventore culpa reiciendis deserunt quasi, aperiam saepe alias rerum delectus, harum eligendi dignissimos dolores quia? Deleniti at sapiente repellendus sit, pariatur, quos optio deserunt odio, dolorem est voluptatum explicabo delectus accusamus officiis quo repellat quia odit praesentium fuga asperiores eos? Consequatur expedita delectus veritatis aperiam corrupti aliquam dolore sequi necessitatibus sed cupiditate!',
-			author: 'John Doe',
-		},
-	])
+	const posts = useSelector((state) => state.blogList)
+	const dispatch = useDispatch()
 
-	const [blogs, setBlogs] = useState(posts.filter((post) => post.category === match.params.category))
+	let id = 22
+	const blogs = posts.filter((post) => post.category === match.params.category)
+
 	const [newBlog, setNewBlog] = useState({
-		category: match.params.category,
 		title: '',
 		description: '',
 		body: 'Blabber your hearts out...',
@@ -229,7 +21,7 @@ function Category({ match }) {
 	})
 
 	const handleDelete = (e) => {
-		setBlogs(blogs.filter((blog) => blog.id !== +e.target.id))
+		dispatch(deleteBlog(e.target.id))
 	}
 
 	const handleOnChange = (e) => {
@@ -243,13 +35,28 @@ function Category({ match }) {
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault()
-		setBlogs([...blogs, { ...newBlog, id: id++ }])
+		if (newBlog.title !== '' || newBlog.description !== '') {
+			dispatch(
+				addBlog({
+					id: id++,
+					category: match.params.category,
+					...newBlog,
+				})
+			)
+		}
+		setNewBlog({
+			title: '',
+			description: '',
+			body: 'Blabber your hearts out...',
+			author: '',
+		})
 	}
 
 	return (
 		<div className="categoryDiv">
 			<Nav />
 			<div className="container">
+				<h1 className="header text-light text-center"> Category: {match.params.category} </h1>
 				<div>
 					<form onSubmit={handleFormSubmit}>
 						<div className="form-row">

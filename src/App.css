@@ -1,6 +1,6 @@
 .wrapJumbotron {
 	min-height: 100vh;
-	background-color: #366183;
+	background-color: #205279;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -9,15 +9,15 @@
 .card-deck {
 	min-height: 100vh;
 	max-width: 101vw;
-	background-color: #366183;
+	background-color: #205279;
 }
 
 .jumbotron {
 	text-align: center;
 	color: azure;
 	border-radius: 25px;
-	background: #366183;
-	box-shadow: 21px 21px 43px #2d516e, -21px -21px 43px #3f7198;
+	background: #205279;
+	box-shadow: 15px 15px 30px #1b4667, -15px -15px 30px #255e8b;
 }
 
 .btn-primary {
@@ -37,8 +37,8 @@
 	list-style: none;
 	padding: 20px;
 	border-radius: 30px;
-	background: #366183;
-	box-shadow: 15px 15px 30px #2e526f, -15px -15px 30px #3e7097;
+	background: #205279;
+	box-shadow: 15px 15px 30px #1b4667, -15px -15px 30px #255e8b;
 }
 
 .category:hover {
@@ -70,7 +70,8 @@
 	color: #e7eff6;
 }
 
-.categoryDiv {
+.categoryDiv,
+.blogDiv {
 	min-height: 100vh;
 	background-color: #205279;
 }
@@ -85,9 +86,14 @@
 
 .blog-title,
 .blog-description,
-.blog-author {
+.blog-author,
+.blog-body {
 	color: #e7eff6;
 	display: inline;
+}
+
+.blog-body {
+	font-size: x-large;
 }
 
 .btnStyle:hover,
