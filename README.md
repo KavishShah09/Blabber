@@ -30,7 +30,7 @@ You will also see any lint errors in the console.
  <img width=600px src="./public/Categories.png" alt="Categories">
  <br>
  <br>
- <img width=600px src="./public/Category.png" alt="Category">
+ <img width=600px src="./public/CategoryWithMessage.png" alt="Category">
  <br>
  <br>
  <img width=600px src="./public/Blog.png" alt="Blog">
